@@ -9,13 +9,6 @@ pipeline {
 
     stages {
 
-        stage('Checkout') {
-            steps {
-                git branch: 'main',
-                    url: 'https://github.com/elashrypublic/jenkins-lab4'
-            }
-        }
-
         stage('Install & Test') {
             steps {
                 sh '''
@@ -46,7 +39,7 @@ pipeline {
                     sh '''
                         aws ecr get-login-password --region $AWS_REGION | \
                         docker login --username AWS --password-stdin \
-                        $ECR_URI
+                        398681517866.dkr.ecr.us-east-1.amazonaws.com
 
                         docker push $ECR_URI:$IMAGE_TAG
                     '''
